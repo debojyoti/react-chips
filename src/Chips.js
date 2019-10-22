@@ -30,6 +30,7 @@ class Chips extends Component {
   
   onBlur = e => {
     this.refs.wrapper.focus();
+    if (this.state.value.trim()) this.addChip(this.state.value);
   }
 
   onFocus = e => {
@@ -159,6 +160,10 @@ class Chips extends Component {
     }
   }
 
+  _addLastChipIfAvailable = () => {
+
+  }
+
   render() {
 
     const { loading, value, suggestions } = this.state;
@@ -186,6 +191,7 @@ class Chips extends Component {
           getSuggestionValue={val => this.state.value}
           inputProps={inputProps}
           onSuggestionSelected={this.onSuggestionSelected}
+          onBlur={this._addLastChipIfAvailable()}
         />
         { loading ? renderLoading() : null }
       </div>
