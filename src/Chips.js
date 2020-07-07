@@ -30,7 +30,12 @@ class Chips extends Component {
   
   onBlur = e => {
     this.refs.wrapper.focus();
-    if (this.state.value.trim()) this.addChip(this.state.value);
+    if (!this.props.fromSuggestionsOnly) {
+      e.preventDefault();
+      if (this.state.value.trim()) this.addChip(this.state.value);
+    } else {
+      this.setState({ value: "" });
+    }
   }
 
   onFocus = e => {
